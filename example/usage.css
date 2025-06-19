@@ -1,0 +1,5 @@
+@import url('https://yourdomain.com/css/font.css');
+
+body {
+    font-family: 'MyCustomFont', sans-serif;
+}

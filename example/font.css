@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'FinCubes';
+    src: url('https://fincubes.ru/fonts/font.woff2') format('woff2'),
+        url('https://fincubes.com/fonts/font.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+1F93F, U+1F30A, U+1F45F, U+1FAE7;
+}
