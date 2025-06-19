@@ -1,4 +1,0 @@
-family = "FinCubes"
-output_dir = "build"
-color_format = "glyf_colr_1" 
-units_per_em = 1000
