@@ -14,10 +14,13 @@ emojis = {
     'icons/immersion.svg': '🫧',
 }
 
-SVG_SRC_DIR = Path('svg_src')
+BUILD_DIR = Path('build')
+BUILD_DIR.mkdir(exist_ok=True)
+
+SVG_SRC_DIR = Path('build/svg_src')
 BUILD_TTF_FILE = Path('build/Font.ttf')
-FONTS_FOLDER = Path('fonts')
-PUBLIC_FOLDER = Path('public')
+FONTS_FOLDER = Path('build/fonts')
+PUBLIC_FOLDER = Path('dist')
 PREFIX_FILENAME_PUBLIC = 'fincubesfont'
 
 
