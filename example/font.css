@@ -1,7 +1,8 @@
 @font-face {
     font-family: 'FinCubes';
-    src: url('https://fincubes.ru/fonts/font.woff2') format('woff2'),
-        url('https://fincubes.com/fonts/font.woff') format('woff');
+    src: url('https://cdn.fincubes.ru/fonts/fincubesfont.woff2') format('woff2'),
+        url('https://cdn.fincubes.com/fonts/fincubesfont.woff') format('woff'),
+        url('https://cdn.fincubes.com/fonts/fincubesfont.ttf') format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;

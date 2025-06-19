@@ -1,3 +1,4 @@
+import shutil
 from fontTools.ttLib import TTFont
 
 
@@ -14,6 +15,7 @@ def convert_ttf_to_woff2(ttf_path, woff2_path):
 
 
 if __name__ == "__main__":
-    ttf_file = "fonts/fin.ttf"
-    convert_ttf_to_woff(ttf_file, "fonts/fin.woff")
-    convert_ttf_to_woff2(ttf_file, "fonts/fin.woff2")
+    ttf_file = "build/Font.ttf"
+    shutil.copy(ttf_file, 'fonts/font.ttf')
+    convert_ttf_to_woff(ttf_file, "fonts/font.woff")
+    convert_ttf_to_woff2(ttf_file, "fonts/font.woff2")

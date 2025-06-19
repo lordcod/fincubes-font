@@ -1,2 +1,3 @@
 fonttools 
 brotli
+git+https://github.com/googlefonts/nototools.git                                                                                                                                 

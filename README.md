@@ -1,6 +1,8 @@
 # FINCUBES-FONT
 
-Проект для создания кастомного шрифта из SVG-иконок (эмодзи), конвертации в разные форматы шрифтов и подключения их через CSS, как в Google Fonts.
+Проект для создания кастомного цветного шрифта из SVG-иконок (эмодзи) с помощью [nanoemoji](https://github.com/googlefonts/nanoemoji) (Noto Emoji).
+
+Позволяет конвертировать SVG в цветной OpenType шрифт, генерировать web-форматы и подключать шрифт через CSS, как Google Fonts.
 
 ---
 
@@ -9,69 +11,55 @@
 ```
 FINCUBES-FONT/
 │
-├── icons/              # Исходные SVG-иконки для каждого глифа
-│   ├── apnea.svg
-│   ├── bifins.svg
-│   ├── immersion.svg
-│   └── surface.svg
-│
-├── fonts/              # Скомпилированные шрифты в разных форматах
-│   ├── fin.ttf
-│   ├── fin.woff
-│   └── fin.woff2
-│
-├── example/            # Примеры подключения шрифта через CSS
-│   ├── font.css        # CSS с @font-face для подключения шрифта
-│   └── usage.css       # Пример использования шрифта в стилях
-│
-├── convertor.py        # Скрипт конвертации TTF -> WOFF/WOFF2
-├── main.py             # Основной скрипт для генерации шрифта из SVG
-├── requirements.txt    # Зависимости проекта
-└── .venv/              # Виртуальное окружение Python (опционально)
+├── icons/              # Исходные SVG-иконки для каждого глифа (оригинальные)
+├── svg_src/            # Подготовленные SVG с переименованными файлами для nanoemoji
+├── fonts/              # Итоговые шрифты в форматах TTF, WOFF, WOFF2
+├── build/              # Временные файлы сборки (nanoemoji)
+├── example/            # Примеры подключения и использования шрифта через CSS/HTML
+├── public/             # Папка для публичных ассетов для CDN
+├── .venv/              # Виртуальное окружение Python (опционально)
+├── main.py             # Создаёт цветной шрифт из svg_src в build/Font.ttf
+├── convertor.py        # Переносит шрифт из build/ в fonts/, конвертирует в WOFF/WOFF2
+├── prepare_name.py     # Создаёт папку svg_src из icons, переименовывая SVG для nanoemoji
+├── generate_public.py  # Генерирует папку public/ с готовыми к загрузке в CDN файлами и CSS
+├── Font.toml           # Конфигурация nanoemoji
+├── requirements.txt    # Зависимости Python
+└── README.md           # Этот файл
 ```
 
 ---
 
-## Как использовать
+## Порядок работы со скриптами
 
-1. Клонируйте репозиторий и создайте виртуальное окружение:
+1. **prepare_name.py** — создаёт из исходников `icons/` папку `svg_src/` с переименованными SVG, удобными для nanoemoji (имена файлов — Unicode коды эмодзи).
+
+2. **main.py** — собирает цветной шрифт из `svg_src/`, создаёт `build/Font.ttf` с помощью nanoemoji.
+
+3. **convertor.py** — переносит TTF-шрифт из `build/` в `fonts/`, создаёт web-форматы `.woff` и `.woff2`.
+
+4. **generate_public.py** — создаёт папку `public/` с шрифтами и CSS для подключения, готовую к загрузке на CDN.
+
+---
+
+## Быстрый старт
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Linux/macOS
+# или
 .venv\Scripts\activate     # Windows
-```
 
-2. Установите зависимости:
-
-```bash
 pip install -r requirements.txt
-```
 
-3. Поместите ваши SVG-иконки в папку `icons/` с именами:
-
-- `apnea.svg`
-- `surface.svg`
-- `bifins.svg`
-- `immersion.svg`
-
-4. Запустите скрипт генерации шрифта:
-
-```bash
+python prepare_name.py
 python main.py
-```
-
-Шрифт будет сгенерирован и сохранён в `fonts/fin.ttf`.
-
-5. Запустите конвертер для создания web-форматов шрифта:
-
-```bash
 python convertor.py
+python generate_public.py
 ```
 
-Это создаст файлы `fin.woff` и `fin.woff2` в папке `fonts/`.
+---
 
-6. Подключите шрифт через CSS (пример в `example/font.css`):
+## Использование шрифта в CSS
 
 ```css
 @font-face {
@@ -86,37 +74,12 @@ python convertor.py
 }
 ```
 
-7. Используйте шрифт в CSS:
-
-```css
-body {
-  font-family: "FincubesFont", sans-serif;
-}
-```
-
----
-
-## Настройки и доработка
-
-- В `main.py` находится функция конвертации SVG в глифы. Сейчас это заглушка — для продвинутой работы нужно реализовать парсинг SVG путей.
-- Можно добавлять новые иконки в `icons/` и обновлять объект эмодзи в `main.py`.
-- Можно менять название шрифта и параметры в CSS.
-
----
-
-## Зависимости
-
-- fonttools
-- brotli (для woff2)
-
-Установить:
-
-```bash
-pip install -r requirements.txt
-```
-
 ---
 
 ## Лицензия
 
-Этот проект открыт для свободного использования и модификации.
+Проект распространяется под лицензией Apache License 2.0.
+
+Вы можете свободно использовать, изменять и распространять этот код при соблюдении условий лицензии.
+
+Подробнее: [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)

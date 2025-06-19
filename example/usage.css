@@ -1,5 +1,5 @@
-@import url('https://yourdomain.com/css/font.css');
+@import url("https://cdn.fincubes.ru/fonts/fincubesfont.css");
 
 body {
-    font-family: 'MyCustomFont', sans-serif;
+    font-family: 'FinCubes', sans-serif;
 }
